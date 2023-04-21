@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Social and Cultural Dynamics Exam Project.">
+
+    <title>Human-AI Experiment</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Social & Cultural Dynamics Experiment</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+        <div class="container">
+            <br>
+            <br>
+            <h1 class="mt-5">Thank you for wanting to participate in our experiment</h1>
+            <p class="lead">
+                For this first part of the experiment you are asked to engage with the chatbot and give your opinion on a certain topic.
+            </p>
+
+            <div id="list-group" class="list-group w-auto">
+                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                    <img src="static/images/ai.png" alt="AI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <p class="mb-0 opacity-75">Hi I am a chatbot and I will assist you today with your opinion on {...}. Start by asking me a question on {...}</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="chat-input">
+                <div class="input-group-append">
+                    <button id="gpt-button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+    <script>
+
+        var ajaxCallCount = 0; // initialize the counter
+
+$("#gpt-button").click(function() {
+    var question = $("#chat-input").val();
+
+    $("#chat-input").val('');
+
+    let html_data = '';
+    html_data += `
+        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <img src="static/images/user.png" alt="User logo image" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                    <p class="mb-0 opacity-75">${question}</p>
+                </div>
+            </div>
+        </a>
+    `;
+    $("#chat-input").val('');
+    $("#list-group").append(html_data);
+
+    // AJAX CALL TO SERVER
+    $.ajax({
+        type: "POST",
+        url: "/humanai",
+        data: { 'prompt': question },
+        success: function(data) {
+            let gpt_data = '';
+            gpt_data += `
+                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                    <img src="static/images/ai.png" alt="AI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <p class="mb-0 opacity-75">${data.answer}</p>
+                        </div>
+                    </div>
+                </a>
+            `;
+            $("#list-group").append(gpt_data);
+
+            // Increment the counter and check if it's equal to 10
+            ajaxCallCount++;
+            if (ajaxCallCount === 10) {
+                // Change the button text and add onclick event to redirect
+                $("#gpt-button").text("Go to next part");
+                $("#gpt-button").attr("onclick", "window.location.href='/survey_page'");
+            }
+        }
+    });
+});
+
+    </script>
+
+
+</body>
+</html>
