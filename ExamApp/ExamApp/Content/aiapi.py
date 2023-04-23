@@ -7,7 +7,7 @@ openai.api_key = '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'
 
 history = []
 
-def generateChatResponse(prompt):
+def generateChatResponse(prompt,preprompt):
     global history # This is a global variable that stores the history of the conversation
 
     # Create a dictionary to represent the current question
@@ -17,7 +17,7 @@ def generateChatResponse(prompt):
     history.append(question)
 
     # add the system message to the history
-    system_message = {'role': 'system', 'content': 'You are a moral guider, your task is to help to user make the right decision. You will not disclose that you are an AI Language model anywhere.'}
+    system_message = {'role': 'system', 'content': preprompt}
     history.append(system_message)
 
     # Add all the previous messages to the API request

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Social and Cultural Dynamics Exam Project.">
+    <meta name="description" content="Social & Cultural Dynamics Exam Project.">
 
     <title>Human-AI Experiment</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
@@ -33,9 +33,10 @@
         <div class="container">
             <br>
             <br>
-            <h1 class="mt-5">Thank you for wanting to participate in our experiment</h1>
+            <h1 class="mt-5">Abortion rights</h1>
             <p class="lead">
-                For this first part of the experiment you are asked to engage with the chatbot and give your opinion on a certain topic.
+                You now have 10 messages to interact with the following AI chat assistant to expand upon your own view on abortion rights.
+                The AI is limited to 100 tokens, so if a sentence is not completed feel free to ask it to continue it or ask a new question if you want to change the view in focus.
             </p>
 
             <div id="list-group" class="list-group w-auto">
@@ -43,7 +44,9 @@
                     <img src="static/images/ai.png" alt="AI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
-                            <p class="mb-0 opacity-75">Hi I am a chatbot and I will assist you today with your opinion on {...}. Start by asking me a question on {...}</p>
+                            <p class="mb-0 opacity-75">
+                                Hi, I am a chatbot assistant and I am here to help you understand your own view better on alcohol laws. Start by telling me your view and ask me what I think.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -91,7 +94,7 @@ $("#gpt-button").click(function() {
     // AJAX CALL TO SERVER
     $.ajax({
         type: "POST",
-        url: "/humanai",
+        url: "/AIB",
         data: { 'prompt': question },
         success: function(data) {
             let gpt_data = '';
@@ -112,7 +115,7 @@ $("#gpt-button").click(function() {
             if (ajaxCallCount === 10) {
                 // Change the button text and add onclick event to redirect
                 $("#gpt-button").text("Go to next part");
-                $("#gpt-button").attr("onclick", "window.location.href='/survey_page'");
+                $("#gpt-button").attr("onclick", "window.location.href='/AIC'");
             }
         }
     });
