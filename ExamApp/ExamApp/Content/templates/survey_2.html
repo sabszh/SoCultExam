@@ -94,51 +94,52 @@
             <br>
 
             <form action="{{ url_for('survey_2') }}" id="survey_2" method="POST">
-
                 <br>
-                <h3>Abortion rights</h3
+                <h3>Abortion rights</h3>
                 <br>
 
-                <label for="Abortion">
+                <label for="abortion">
                     How do you feel about the existing legislation in Denmark allowing for abortion up to 12 weeks after conception?
                 </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="age" name="age">
+                <input type="range" min="0" max="100" value="0" class="slider" id="abortion" name="abortion">
                 <p>
-                    <label for="Abortion">Should be fewer weeks</label>
-                    <label for="Abortion" style="float: right;">Should be more weeks</label>
+                    <label for="abortion">Should be fewer weeks</label>
+                    <label for="abortion" style="float: right;">Should be more weeks</label>
                 </p>
 
                 <br>
-                <h3>Legal age of buying alcohol</h3
+                <h3>Legal age of buying alcohol</h3>
                 <br>
 
-                <label for="Alcohol">
+                <label for="alcohol">
                     What do you think about the rule in Denmark that says you have to be at least 16 years old to buy alcohol with up to 16.5% alcohol content in stores?
                 </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="age" name="age">
+                <input type="range" min="0" max="100" value="0" class="slider" id="alcohol" name="alcohol">
                 <p>
-                    <label for="Alcohol">Should be younger</label>
-                    <label for="Alcohol" style="float: right;">Should be older</label>
+                    <label for="alcohol">Should be younger</label>
+                    <label for="alcohol" style="float: right;">Should be older</label>
                 </p>
 
                 <br>
-                <h3>Legal age of voting</h3
+                <h3>Legal age of voting</h3>
                 <br>
 
-                <label for="Suffrage">
+                <label for="suffrage">
                     How do you feel about the legal voting age in Denmark being set at 18 years old?
                 </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="age" name="age">
+                <input type="range" min="0" max="100" value="0" class="slider" id="suffrage" name="suffrage">
                 <p>
-                    <label for="Suffrage">Should be younger</label>
-                    <label for="Suffrage" style="float: right;">Should be older</label>
+                    <label for="suffrage">Should be younger</label>
+                    <label for="suffrage" style="float: right;">Should be older</label>
                 </p>
+                <p><i>
+                    Before clicking next, please validate that you stated your state of mind for each question.
+                 </i></p>
 
-                <p><i>Before clicking next, please validate that you stated your state of mind for each question.</i></p>
+                <button type="submit" class="btn btn-primary">Next</button>
+            </form>
+            </script>
 
-                        </script>
-
-                        <button type="button" class="btn btn-primary" onclick="window.location.href='/AIA'">Next</button>
 </body>
 
 </html>

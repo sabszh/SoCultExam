@@ -41,3 +41,5 @@ def generateChatResponse(prompt,preprompt):
         answer = 'Sorry, the API is down right now. Try again later.'
 
     return answer
+
+__all__ = ['history']

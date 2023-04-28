@@ -85,14 +85,14 @@
                 <div class="w3-row-padding w3-padding-16 w3-left-align">
                     <label for="Age">
                         <br>
-                        <b><font style="color:#00008B; font-size: large;">What is your Age?:</font></b>
+                        <b><font style="color:#00008B; font-size: large;">What is your age?:</font></b>
                     </label>
                     <input type="text" name="Age" value="{{Age}}" required>
                 </div>
 
                 <div class="w3-row-padding w3-padding-16 w3-left-align">
                     <label for="Gender">
-                        <b><font style="color:#00008B; font-size: large;">Please select the Gender identity that matches best: </font></b>
+                        <b><font style="color:#00008B; font-size: large;">Please select the gender identity that matches best: </font></b>
                     </label>
                     <select id="Gender" name="Gender" required>
                         <option value="" disabled selected></option>
@@ -105,7 +105,7 @@
 
                 <div class="w3-row-padding w3-padding-16 w3-left-align">
                     <label for="Nationality">
-                        <b><font style="color:#00008B; font-size: large;">Please select your Nationality: </font></b>
+                        <b><font style="color:#00008B; font-size: large;">Please select your nationality: </font></b>
                     </label>
                     <select id="Nationality" name="Nationality" required>
                         <option value="" disabled selected></option>
@@ -306,7 +306,7 @@
 
                 <div class="w3-row-padding w3-padding-16 w3-left-align">
                     <label for="Occupation">
-                        <b><font style="color:#00008B; font-size: large;">Please select the Occupation that matches best: </font></b>
+                        <b><font style="color:#00008B; font-size: large;">Please select the occupation that matches best: </font></b>
                     </label>
                     <select id="Occupation" name="Occupation" required>
                         <option value="" disabled selected></option>
@@ -333,7 +333,7 @@
 
                 <div class="w3-row-padding w3-padding-16 w3-left-align">
                     <label for="Which">
-                        <b><font style="color:#00008B; font-size: large;">If yes, Which type of Artificial Intelligent (AI) based Chatbot have you interacted with?</font></b>
+                        <b><font style="color:#00008B; font-size: large;">If yes, which type of Artificial Intelligent (AI) based Chatbot do you primarily interact with?</font></b>
                     </label>
                     <select id="Which" name="Which" required>
                         <option value="" disabled selected></option>
@@ -361,26 +361,9 @@
                     </select>
 
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="validateForm()">Next</button>
 
-                <script>
-                    function validateForm() {
-                        var Age = document.getElementById("Age").value;
-                        var Gender = document.getElementById("Gender").value;
-                        var Occupation = document.getElementById("Occupation").value;
-                        var Nationality = document.getElementById("Nationality").value;
-                        var InterAI = document.getElementById("InterAI").value;
-                        var Which = document.getElementById("Which").value;
-                        var How_often = document.getElementById("How_often").value;
-
-                        if (Age && Gender && Occupation && Nationality && InterAI && Which && How_often) {
-                            window.location.href = "/survey_2";
-                        } else {
-                            alert("Please fill out all fields before proceeding.");
-                        }
-                    }
-                </script>
-
+                <button type="submit" class="btn btn-primary">Next</button>
+            </form>
 
 </body>
 
