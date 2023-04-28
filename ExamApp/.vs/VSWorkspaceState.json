@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ExamApp",
+    "\\ExamApp\\Content",
+    "\\ExamApp\\Content\\static\\images",
+    "\\ExamApp\\Content\\surveys",
+    "\\ExamApp\\Content\\templates"
   ],
   "SelectedNode": "\\ExamApp.sln",
   "PreviewInSolutionExplorer": false

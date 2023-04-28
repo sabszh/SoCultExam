@@ -14,11 +14,26 @@
         html, body, h1, h2, h3, h4, h5 {
             font-family: "Raleway", sans-serif
         }
+
         #consent-text {
             background-color: #f2f2f2;
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
+        }
+
+        form-control::placeholder {
+            font-size: 0.95rem;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .form-control.shadow-0:focus {
+            box-shadow: none;
+        }
+
+        body {
+            padding-bottom: 50px;
         }
     </style>
 
@@ -30,19 +45,12 @@
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Social & Cultural Dynamics Experiment</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    </ul>
-                </div>
             </div>
         </nav>
     </header>
 
 
-    <!-- Begin page content -->
+    <!-- Begin pAge content -->
     <main class="flex-shrink-0">
         <div class="container">
             <br>
@@ -72,74 +80,308 @@
             </div>
 
             <form action="{{ url_for('survey_1') }}" id="survey_1" method="POST">
+                <h3>Participant information</h3>
 
-                <H3>Please answer the following questions:</H3>
-
-                <div class="w3-row-padding w3-padding-16 w3-center">
-                    <div class="w3-half w3-left-align w3-padding-16">
-                        <label for="are_you_happy"><b><font style="color:#00008B; font-size: large;">Are you happy?</font></b></label><br>
-
-                        <SELECT class="w3-button w3-blue w3-padding-large w3-large w3-margin-top" name="are_you_happy">
-                            <option value="{{are_you_happy}}" selected>{{are_you_happy}}</option> ">
-                            <option value="very_happy">Very</option>
-                            <option value="Somewhat_happy">Somewhat</option>
-                            <option value="Neutral_happy">Not sure</option>
-                            <option value="Not_very_happy">Not very</option>
-                            <option value="Not_happy_at_all">Not at all</option>
-                        </SELECT>
-                    </div>
-
-                    <div class="w3-half w3-left-align w3-padding-16">
-                        <label for="recommend_this_to">
-                            <b><font style="color:#00008B; font-size: large;">Who would you recommend <br>this survey to (multiple answers OK)?</font></b><BR>
-
-                            <input type="checkbox" name='recommend_this_to' value='Family' {{Family_checked}}>
-                            <label for="Family"> Your family</label><br>
-                            <input type="checkbox" name='recommend_this_to' value="Friends" {{Friends_checked}}>
-                            <label for="Friends"> Your friends</label><br>
-                            <input type="checkbox" name='recommend_this_to' value="Colleagues" {{Colleagues_checked}}>
-                            <label for="Colleagues"> Your colleagues</label><br><br>
-                    </div>
-                </div>
-                <H3>Participant information</H3>
-
-                <H3>Participant information</H3>
-                <div class="w3-row-padding w3-padding-16">
-                    <div class="w3-half w3-left-align w3-padding-16">
-                        <label for="alias">
-                            <b><font style="color:#00008B; font-size: large;">Alias: </font></b>
-                        </label>
-                        <input type="text" name="alias" value="{{alias}}" required>
-                    </div>
-                    <div class="w3-half w3-left-align w3-padding-16">
-                        <label for="age">
-                            <b><font style="color:#00008B; font-size: large;">Age: </font></b>
-                        </label>
-                        <input type="text" name="age" value="{{age}}" required>
-                    </div>
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="Age">
+                        <br>
+                        <b><font style="color:#00008B; font-size: large;">What is your Age?:</font></b>
+                    </label>
+                    <input type="text" name="Age" value="{{Age}}" required>
                 </div>
 
-                <div class="w3-row-padding w3-padding-16 w3-center">
-                    <div class="w3-half w3-left-align w3-padding-16">
-                        <label for="gender"><b><font style="color:#00008B; font-size: large;">Enter your gender:</font></b></label><br>
-                        <input type="radio" name="gender" value="female"> Female</input><br>
-                        <input type="radio" name="gender" value="male"> Male</input><br>
-                        <input type="radio" name="gender" value="non-binary"> Non-binary</input><br>
-                        <input type="radio" name="gender" value="other"> Other</input>
-                    </div>
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="Gender">
+                        <b><font style="color:#00008B; font-size: large;">Please select the Gender identity that matches best: </font></b>
+                    </label>
+                    <select id="Gender" name="Gender" required>
+                        <option value="" disabled selected></option>
+                        <option value="Female">Female</option>
+                        <option value="Man">Man</option>
+                        <option value="Non-binary">Non-binary</option>
+                        <option value="Other">Other</option>
+                    </select>
                 </div>
 
-
-                <div class="w3-row-padding w3-padding-16 w3-center">
-                    <input type="submit" id="submitButton" value="Next" name="submit"
-                           class="w3-button w3-blue w3-padding-large w3-large w3-margin-top"
-                           onclick="window.location.href='/humanaiA'">
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="Nationality">
+                        <b><font style="color:#00008B; font-size: large;">Please select your Nationality: </font></b>
+                    </label>
+                    <select id="Nationality" name="Nationality" required>
+                        <option value="" disabled selected></option>
+                        <option value="Afghan">Afghan</option>
+                        <option value="Albanian">Albanian</option>
+                        <option value="Algerian">Algerian</option>
+                        <option value="American">American</option>
+                        <option value="Andorran">Andorran</option>
+                        <option value="Angolan">Angolan</option>
+                        <option value="Antiguans">Antiguans</option>
+                        <option value="Argentinean">Argentinean</option>
+                        <option value="Armenian">Armenian</option>
+                        <option value="Australian">Australian</option>
+                        <option value="Austrian">Austrian</option>
+                        <option value="Azerbaijani">Azerbaijani</option>
+                        <option value="Bahamian">Bahamian</option>
+                        <option value="Bahraini">Bahraini</option>
+                        <option value="Bangladeshi">Bangladeshi</option>
+                        <option value="Barbadian">Barbadian</option>
+                        <option value="Barbudans">Barbudans</option>
+                        <option value="Batswana">Batswana</option>
+                        <option value="Belarusian">Belarusian</option>
+                        <option value="Belgian">Belgian</option>
+                        <option value="Belizean">Belizean</option>
+                        <option value="Beninese">Beninese</option>
+                        <option value="Bhutanese">Bhutanese</option>
+                        <option value="Bolivian">Bolivian</option>
+                        <option value="Bosnian">Bosnian</option>
+                        <option value="Brazilian">Brazilian</option>
+                        <option value="British">British</option>
+                        <option value="Bruneian">Bruneian</option>
+                        <option value="Bulgarian">Bulgarian</option>
+                        <option value="Burkinabe">Burkinabe</option>
+                        <option value="Burmese">Burmese</option>
+                        <option value="Burundian">Burundian</option>
+                        <option value="Cambodian">Cambodian</option>
+                        <option value="Cameroonian">Cameroonian</option>
+                        <option value="canadian">Canadian</option>
+                        <option value="cape verdean">Cape Verdean</option>
+                        <option value="central african">Central African</option>
+                        <option value="chadian">Chadian</option>
+                        <option value="chilean">Chilean</option>
+                        <option value="chinese">Chinese</option>
+                        <option value="colombian">Colombian</option>
+                        <option value="comoran">Comoran</option>
+                        <option value="congolese">Congolese</option>
+                        <option value="costa rican">Costa Rican</option>
+                        <option value="croatian">Croatian</option>
+                        <option value="cuban">Cuban</option>
+                        <option value="cypriot">Cypriot</option>
+                        <option value="czech">Czech</option>
+                        <option value="danish">Danish</option>
+                        <option value="djibouti">Djibouti</option>
+                        <option value="dominican">Dominican</option>
+                        <option value="dutch">Dutch</option>
+                        <option value="east timorese">East Timorese</option>
+                        <option value="ecuadorean">Ecuadorean</option>
+                        <option value="egyptian">Egyptian</option>
+                        <option value="emirian">Emirian</option>
+                        <option value="equatorial guinean">Equatorial Guinean</option>
+                        <option value="eritrean">Eritrean</option>
+                        <option value="estonian">Estonian</option>
+                        <option value="ethiopian">Ethiopian</option>
+                        <option value="fijian">Fijian</option>
+                        <option value="filipino">Filipino</option>
+                        <option value="finnish">Finnish</option>
+                        <option value="french">French</option>
+                        <option value="gabonese">Gabonese</option>
+                        <option value="gambian">Gambian</option>
+                        <option value="georgian">Georgian</option>
+                        <option value="german">German</option>
+                        <option value="ghanaian">Ghanaian</option>
+                        <option value="greek">Greek</option>
+                        <option value="grenadian">Grenadian</option>
+                        <option value="guatemalan">Guatemalan</option>
+                        <option value="guinea-bissauan">Guinea-Bissauan</option>
+                        <option value="guinean">Guinean</option>
+                        <option value="guyanese">Guyanese</option>
+                        <option value="haitian">Haitian</option>
+                        <option value="herzegovinian">Herzegovinian</option>
+                        <option value="honduran">Honduran</option>
+                        <option value="hungarian">Hungarian</option>
+                        <option value="icelander">Icelander</option>
+                        <option value="indian">Indian</option>
+                        <option value="indonesian">Indonesian</option>
+                        <option value="iranian">Iranian</option>
+                        <option value="iraqi">Iraqi</option>
+                        <option value="irish">Irish</option>
+                        <option value="israeli">Israeli</option>
+                        <option value="italian">Italian</option>
+                        <option value="ivorian">Ivorian</option>
+                        <option value="jamaican">Jamaican</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="jordanian">Jordanian</option>
+                        <option value="kazakhstani">Kazakhstani</option>
+                        <option value="kenyan">Kenyan</option>
+                        <option value="kittian and nevisian">Kittian and Nevisian</option>
+                        <option value="kuwaiti">Kuwaiti</option>
+                        <option value="kyrgyz">Kyrgyz</option>
+                        <option value="laotian">Laotian</option>
+                        <option value="latvian">Latvian</option>
+                        <option value="lebanese">Lebanese</option>
+                        <option value="liberian">Liberian</option>
+                        <option value="libyan">Libyan</option>
+                        <option value="liechtensteiner">Liechtensteiner</option>
+                        <option value="lithuanian">Lithuanian</option>
+                        <option value="luxembourger">Luxembourger</option>
+                        <option value="macedonian">Macedonian</option>
+                        <option value="malagasy">Malagasy</option>
+                        <option value="malawian">Malawian</option>
+                        <option value="malaysian">Malaysian</option>
+                        <option value="maldivan">Maldivan</option>
+                        <option value="malian">Malian</option>
+                        <option value="maltese">Maltese</option>
+                        <option value="marshallese">Marshallese</option>
+                        <option value="mauritanian">Mauritanian</option>
+                        <option value="mauritian">Mauritian</option>
+                        <option value="mexican">Mexican</option>
+                        <option value="micronesian">Micronesian</option>
+                        <option value="moldovan">Moldovan</option>
+                        <option value="monacan">Monacan</option>
+                        <option value="mongolian">Mongolian</option>
+                        <option value="moroccan">Moroccan</option>
+                        <option value="mosotho">Mosotho</option>
+                        <option value="motswana">Motswana</option>
+                        <option value="mozambican">Mozambican</option>
+                        <option value="namibian">Namibian</option>
+                        <option value="nauruan">Nauruan</option>
+                        <option value="nepalese">Nepalese</option>
+                        <option value="new zealander">New Zealander</option>
+                        <option value="ni-vanuatu">Ni-Vanuatu</option>
+                        <option value="nicaraguan">Nicaraguan</option>
+                        <option value="nigerien">Nigerien</option>
+                        <option value="north korean">North Korean</option>
+                        <option value="northern irish">Northern Irish</option>
+                        <option value="norwegian">Norwegian</option>
+                        <option value="omani">Omani</option>
+                        <option value="pakistani">Pakistani</option>
+                        <option value="palauan">Palauan</option>
+                        <option value="panamanian">Panamanian</option>
+                        <option value="papua new guinean">Papua New Guinean</option>
+                        <option value="paraguayan">Paraguayan</option>
+                        <option value="peruvian">Peruvian</option>
+                        <option value="polish">Polish</option>
+                        <option value="portuguese">Portuguese</option>
+                        <option value="qatari">Qatari</option>
+                        <option value="romanian">Romanian</option>
+                        <option value="russian">Russian</option>
+                        <option value="rwandan">Rwandan</option>
+                        <option value="saint lucian">Saint Lucian</option>
+                        <option value="salvadoran">Salvadoran</option>
+                        <option value="samoan">Samoan</option>
+                        <option value="san marinese">San Marinese</option>
+                        <option value="sao tomean">Sao Tomean</option>
+                        <option value="saudi">Saudi</option>
+                        <option value="scottish">Scottish</option>
+                        <option value="senegalese">Senegalese</option>
+                        <option value="serbian">Serbian</option>
+                        <option value="seychellois">Seychellois</option>
+                        <option value="sierra leonean">Sierra Leonean</option>
+                        <option value="singaporean">Singaporean</option>
+                        <option value="slovakian">Slovakian</option>
+                        <option value="slovenian">Slovenian</option>
+                        <option value="solomon islander">Solomon Islander</option>
+                        <option value="somali">Somali</option>
+                        <option value="south african">South African</option>
+                        <option value="south korean">South Korean</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="sri lankan">Sri Lankan</option>
+                        <option value="sudanese">Sudanese</option>
+                        <option value="surinamer">Surinamer</option>
+                        <option value="swazi">Swazi</option>
+                        <option value="swedish">Swedish</option>
+                        <option value="swiss">Swiss</option>
+                        <option value="syrian">Syrian</option>
+                        <option value="taiwanese">Taiwanese</option>
+                        <option value="tajik">Tajik</option>
+                        <option value="tanzanian">Tanzanian</option>
+                        <option value="thai">Thai</option>
+                        <option value="togolese">Togolese</option>
+                        <option value="tongan">Tongan</option>
+                        <option value="trinidadian or tobagonian">Trinidadian or Tobagonian</option>
+                        <option value="tunisian">Tunisian</option>
+                        <option value="turkish">Turkish</option>
+                        <option value="tuvaluan">Tuvaluan</option>
+                        <option value="ugandan">Ugandan</option>
+                        <option value="ukrainian">Ukrainian</option>
+                        <option value="uruguayan">Uruguayan</option>
+                        <option value="uzbekistani">Uzbekistani</option>
+                        <option value="venezuelan">Venezuelan</option>
+                        <option value="vietnamese">Vietnamese</option>
+                        <option value="welsh">Welsh</option>
+                        <option value="yemenite">Yemenite</option>
+                        <option value="zambian">Zambian</option>
+                        <option value="zimbabwean">Zimbabwean</option>
+                    </select>
                 </div>
 
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="Occupation">
+                        <b><font style="color:#00008B; font-size: large;">Please select the Occupation that matches best: </font></b>
+                    </label>
+                    <select id="Occupation" name="Occupation" required>
+                        <option value="" disabled selected></option>
+                        <option value="Student">Student</option>
+                        <option value="Employed">Employed</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="Retired">Retired</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <H3>Questions on prior interaction with AI</H3>
+
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="InterAI">
+                        <b><font style="color:#00008B; font-size: large;">Have you ever interacted with an Artificial Intelligent (AI) based Chatbot (e.g. ChatGPT, Bing AI, Replika, MidJourney, etc.)?</font></b>
+                    </label>
+                    <select id="InterAI" name="InterAI" required>
+                        <option value="" disabled selected></option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="Which">
+                        <b><font style="color:#00008B; font-size: large;">If yes, Which type of Artificial Intelligent (AI) based Chatbot have you interacted with?</font></b>
+                    </label>
+                    <select id="Which" name="Which" required>
+                        <option value="" disabled selected></option>
+                        <option value="I have never interacted with an AI"> I have never intereacted with an AI</option>
+                        <option value="Chatbot assistants on shopping sites">Chatbot assistants on shopping sites</option>
+                        <option value="Chatbot companions for social interaction">Chatbot companions for social interaction</option>
+                        <option value="Chatbot search engine assistants">Chatbot search engine assistants</option>
+                        <option value="Chatbot for art purposes">Chatbot for art purposes</option>
+                        <option value="Chatbot for task assistants">Chatbot for task assistants</option>
+                    </select>
+                </div>
+
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="How_often">
+                        <b><font style="color:#00008B; font-size: large;">If stated yes, how often do you interact with Artificial Intelligent based Chatbot(s)?</font></b>
+                    </label>
+                    <select id="How_often" name="How_often" required>
+                        <option value="" disabled selected></option>
+                        <option value="Never">Never</option>
+                        <option value="Every day">Every day</option>
+                        <option value="2-3 times week">2-3 times week</option>
+                        <option value="3-4 times a month">3-4 times a month</option>
+                        <option value="6 times a year">6 times a year</option>
+                        <option value="1-2 times a year">1-2 times a year</option>
+                    </select>
+
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="validateForm()">Next</button>
+
+                <script>
+                    function validateForm() {
+                        var Age = document.getElementById("Age").value;
+                        var Gender = document.getElementById("Gender").value;
+                        var Occupation = document.getElementById("Occupation").value;
+                        var Nationality = document.getElementById("Nationality").value;
+                        var InterAI = document.getElementById("InterAI").value;
+                        var Which = document.getElementById("Which").value;
+                        var How_often = document.getElementById("How_often").value;
+
+                        if (Age && Gender && Occupation && Nationality && InterAI && Which && How_often) {
+                            window.location.href = "/survey_2";
+                        } else {
+                            alert("Please fill out all fields before proceeding.");
+                        }
+                    }
+                </script>
 
 
-            </form>
-
-        </div>
 </body>
+
 </html>
