@@ -28,8 +28,8 @@
             <br>
             <h1 class="mt-5">Voting age</h1>
             <p class="lead">
-                You now have 10 messages to interact with the following AI chat assistant to expand upon your own view on the legal age of alcohol drinking.
-                The AI is limited to 100 tokens, so if a sentence is not completed feel free to ask it to continue it or ask a new question if you want to change the view in focus.
+                You now have 10 messages to interact with the following AI chat assistant to expand upon your own view of the voting age.
+                The AI is limited to 100 tokens, so if a sentence is not completed feel free to ask it to continue it or ask a new question if you want to change the view in focus
             </p>
 
             <div id="list-group" class="list-group w-auto">
@@ -38,7 +38,7 @@
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
                             <p class="mb-0 opacity-75">
-                                Hi, I am a chatbot assistant and I am here to help you understand your own view better on voting age. Start by telling me your view and ask me what I think.
+                                Hi, I am a chatbot assistant and I am here to help you understand your own view better on voting age. Start by telling me your view and ask me what I think
                             </p>
                         </div>
                     </div>
@@ -103,10 +103,10 @@ $("#gpt-button").click(function() {
 
             // Increment the counter and check if it's equal to 10
             ajaxCallCount++;
-            if (ajaxCallCount === 10) {
+            if (ajaxCallCount === 5) {
                 // Change the button text and add onclick event to redirect
                 $("#gpt-button").text("Go to next part");
-                $("#gpt-button").attr("onclick", "window.location.href='/survey_2'");
+                $("#gpt-button").attr("onclick", "window.location.href='/survey_3'");
             }
         }
     });

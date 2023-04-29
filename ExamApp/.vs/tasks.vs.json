@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-chathistory",
+      "appliesTo": "ExamApp/Content/surveys/chathistory.csv",
+      "type": "launch"
+    }
+  ]
+}

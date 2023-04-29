@@ -3,10 +3,13 @@
     "",
     "\\ExamApp",
     "\\ExamApp\\Content",
-    "\\ExamApp\\Content\\static\\images",
+    "\\ExamApp\\Content\\static",
+    "\\ExamApp\\Content\\static\\db",
     "\\ExamApp\\Content\\surveys",
-    "\\ExamApp\\Content\\templates"
+    "\\ExamApp\\Content\\templates",
+    "\\ExamApp\\Content\\__pycache__",
+    "\\ExamApp\\obj"
   ],
-  "SelectedNode": "\\ExamApp.sln",
+  "SelectedNode": "\\ExamApp\\Content\\aiapi.py",
   "PreviewInSolutionExplorer": false
 }
