@@ -4,12 +4,12 @@
     "\\ExamApp",
     "\\ExamApp\\Content",
     "\\ExamApp\\Content\\static",
-    "\\ExamApp\\Content\\static\\db",
+    "\\ExamApp\\Content\\static\\images",
     "\\ExamApp\\Content\\surveys",
     "\\ExamApp\\Content\\templates",
     "\\ExamApp\\Content\\__pycache__",
     "\\ExamApp\\obj"
   ],
-  "SelectedNode": "\\ExamApp\\Content\\flask_app.py",
+  "SelectedNode": "\\ExamApp\\Content\\surveys\\chathistory.csv",
   "PreviewInSolutionExplorer": false
 }

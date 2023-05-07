@@ -88,55 +88,65 @@
             <h1 class="mt-5">
                 Thank you for stating your opinions and chatting with the AI
             </h1>
-            You will now be presented with three questions regarding three distinct laws in Denmark, and you will be asked to give your opinion on each one. Your response will be placed on a timeline. Please provide the answer that you believe most accurately reflects your personal opinion or perspective, even if you are uncertain.
+            You will now be presented with the three questions again regarding three distinct laws in Denmark, and you are asked to give your current opinion on each one. Your response will be placed on a timeline. Please provide the answer that you believe most accurately reflects your personal opinion or perspective, even if you are uncertain.
             <br>
 
             <form action="{{ url_for('survey_3') }}" id="survey_3" method="POST">
                 <br>
+                <br>
                 <h3>Abortion rights</h3>
                 <br>
-
-                <label for="abortion_post">
-                    How do you feel about the existing legislation in Denmark allowing for abortion up to 12 weeks after conception?
-                </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="abortion_post" name="abortion_post">
+                <label for="abortion_post">How do you feel about the existing legislation in Denmark allowing for abortion up to 12 weeks after conception?</label>
+                <input type="range" min="0" max="100" value="" class="slider" id="abortion_post" name="abortion_post">
                 <p>
                     <label for="abortion_post">Should be fewer weeks</label>
                     <label for="abortion_post" style="float: right;">Should be more weeks</label>
                 </p>
-
                 <br>
+
                 <h3>Legal age of buying alcohol</h3>
                 <br>
-
-                <label for="alcohol_post">
-                    What do you think about the rule in Denmark that says you have to be at least 16 years old to buy alcohol with up to 16.5% alcohol content in stores?
-                </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="alcohol_post" name="alcohol_post">
+                <label for="alcohol_post">What is your opinion on the Danish law that sets the age at 16 for purchasing beverages containing up to 16.5% alcohol?</label>
+                <input type="range" min="0" max="100" value="" class="slider" id="alcohol_post" name="alcohol_post">
                 <p>
                     <label for="alcohol_post">Should be younger</label>
                     <label for="alcohol_post" style="float: right;">Should be older</label>
                 </p>
-
                 <br>
+
                 <h3>Legal age of voting</h3>
                 <br>
-
-                <label for="suffrage_post">
-                    How do you feel about the legal voting age in Denmark being set at 18 years old?
-                </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="suffrage_post" name="suffrage_post">
+                <label for="suffrage_post">How do you feel about the legal voting age in Denmark being set at 18 years old?</label>
+                <input type="range" min="0" max="100" value="" class="slider" id="suffrage_post" name="suffrage_post">
                 <p>
                     <label for="suffrage_post">Should be younger</label>
                     <label for="suffrage_post" style="float: right;">Should be older</label>
                 </p>
+
+                <script>
+                    // Generate a random integer between 0 and 2
+                    const randomValue = Math.floor(Math.random() * 3);
+
+                    // Set the value of each range input to the corresponding value (0, 50, or 100) based on the random integer generated
+                    document.getElementById("abortion_post").value = randomValue * 50;
+                    document.getElementById("alcohol_post").value = randomValue * 50;
+                    document.getElementById("suffrage_post").value = randomValue * 50;
+                </script>
                 <p>
                     <i>
-                        Before ending the experiment, please validate that you stated your state of mind for each question.
+                        Before clicking next, please validate that you stated your opinion for each question.
+                        Additionally, if you have any comments or suggestions regarding the experiment, please feel free to provide them here.
                     </i>
                 </p>
-
-                <button type="submit" class="btn btn-primary">End experiment</button>
+                <div class="w3-row-padding w3-padding-16 w3-left-align">
+                    <label for="Feedback
+                    <br>
+                    <b><font style="color:#00008B; font-size: large;">Your feedback</font></b>
+                </label>
+                    <input type="text" name="Feedback" value="{{Feedback}}">
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary">End experiment</button>
             </form>
             </script>
 

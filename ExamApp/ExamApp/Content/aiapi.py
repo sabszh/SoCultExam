@@ -1,17 +1,12 @@
 from ast import Try
 import os
 import openai
-from datetime import datetime
-import time
-
-
 
 openai.api_key = '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'
 
-history = []
-
 def generateChatResponse(prompt,preprompt):
-    global history
+
+    history = []
     # add the system message to the history
     system_message = {'role': 'system', 'content': preprompt}
     history.append(system_message)
@@ -45,18 +40,5 @@ def generateChatResponse(prompt,preprompt):
     except:
         # Handle API errors
         answer = 'Sorry, the API is down right now. Try again later.'
-
-    Entry_time = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-
-    with open('C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/chathistory.csv', 'a+') as myfile:
-        myfile.write(
-            str(User_ID) + ';' +
-            str(Entry_time) + ';' +
-            'AIA' + ';' + 
-            str(abortion) + ';' +
-            str(history) + ';'
-            + '\n')
-    # run the spreadsheet update script
-    subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
 
     return answer

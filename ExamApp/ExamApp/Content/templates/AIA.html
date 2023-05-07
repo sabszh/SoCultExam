@@ -26,22 +26,22 @@
         <div class="container">
             <br>
             <br>
-            <h1 class="mt-5">Abortion rights</h1>
+            <h1 class="mt-5">Abortion law</h1>
             <p class="lead">
-                You now have 10 messages to interact with the following AI chat assistant to expand upon your own view on abortion rights.
+                You now have 5 messages to interact with the following AI chat assistant to expand upon your own view on abortion law.
                 The AI is limited to 100 tokens, so if a sentence is not completed feel free to ask it to continue it or ask a new question if you want to change the view in focus.
+                We kindly ask you to have some patience when chatting with the AI, as it may take a few seconds for it to respond.
             </p>
 
             <div id="list-group" class="list-group w-auto">
                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-                    <img src="static/images/ai.png" alt="AI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
+                    <img src="https://www.svgrepo.com/show/306500/openai.svg" alt="OpenAI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
-                            <p class="mb-0 opacity-75">Hi, I am a chatbot assistant and I am here to help you understand your own view better on abortion rights. Start by telling me your view and ask me what I think.</p>
+                            <p class="mb-0 opacity-75">Hi, I am a chatbot assistant and I am here to help you understand your own view better on abortion law. Start by telling me your view and ask me what I think.</p>
                         </div>
                     </div>
                 </a>
-
             </div>
 
             <div class="input-group mb-3">
@@ -70,15 +70,15 @@
 
             let html_data = '';
             html_data += `
-                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-                    <img src="static/images/user.png" alt="User logo image" width="32" height="32" class="rounded-circle flex-shrink-0">
+                    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User logo image" width="32" height="32" class="rounded-circle flex-shrink-0">
                     <div class="d-flex gap-2 w-100 justify-content-between">
-                        <div>
-                            <p class="mb-0 opacity-75">${question}</p>
+                            <div>
+                                <p class="mb-0 opacity-75">${question}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            `;
+                    </a>
+                `;
             $("#chat-input").val('');
             $("#list-group").append(html_data);
 
@@ -90,15 +90,15 @@
                 success: function (data) {
                     let gpt_data = '';
                     gpt_data += `
-                        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-                            <img src="static/images/ai.png" alt="AI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
-                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                <div>
-                                    <p class="mb-0 opacity-75">${data.answer}</p>
+                            <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                                <img src="https://www.svgrepo.com/show/306500/openai.svg" alt="AI logo" width="32" height="32" class="rounded-circle flex-shrink-0">
+                                <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <p class="mb-0 opacity-75">${data.answer}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    `;
+                            </a>
+                        `;
                     $("#list-group").append(gpt_data);
 
                     // Increment the counter and check if it's equal to 10

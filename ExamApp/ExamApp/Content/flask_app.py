@@ -1,7 +1,5 @@
-import json
-from flask import Flask, render_template, jsonify, request, app, redirect
+from flask import Flask, render_template, jsonify, request, app, redirect, session
 import subprocess
-#import aiapi
 import os
 from io import StringIO
 from datetime import datetime
@@ -18,9 +16,9 @@ import openai
 from datetime import datetime
 import time
 
-
-
 openai.api_key = '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'
+
+User_ID = None
 
 historyAIA = []
 run_count_AIA = 0
@@ -50,7 +48,7 @@ def generateChatResponseAIA(prompt,preprompt):
         model = "gpt-3.5-turbo",
         messages = message,
         max_tokens = 100)
-    
+
     try:
         # Extract the answer from the API response
         answer = response['choices'][0]['message']['content'].replace('\n', '<br>')
@@ -61,17 +59,17 @@ def generateChatResponseAIA(prompt,preprompt):
     except:
         # Handle API errors
         answer = 'Sorry, the API is down right now. Try again later.'
-        
+
     Entry_time = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     # increment run count and reset the history variable when it reaches 5
     run_count_AIA += 1
-   
+
     if run_count_AIA == 4:
         with open('C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/chathistory.csv', 'a+') as myfile:
             myfile.write(
                 str(User_ID) + ';' +
                 str(Entry_time) + ';' +
-                'AIA' + ';' + 
+                'AIA' + ';' +
                 str(abortion) + ';' +
                 str(historyAIA) + ';'
                 +'\n')
@@ -113,7 +111,7 @@ def generateChatResponseAIB(prompt,preprompt):
         model = "gpt-3.5-turbo",
         messages = message,
         max_tokens = 100)
-    
+
     try:
         # Extract the answer from the API response
         answer = response['choices'][0]['message']['content'].replace('\n', '<br>')
@@ -124,25 +122,25 @@ def generateChatResponseAIB(prompt,preprompt):
     except:
         # Handle API errors
         answer = 'Sorry, the API is down right now. Try again later.'
-        
+
     Entry_time = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     # increment run count and reset the history variable when it reaches 5
     run_count_AIB += 1
-   
+
     if run_count_AIB == 4:
         with open('C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/chathistory.csv', 'a+') as myfile:
             myfile.write(
                 str(User_ID) + ';' +
                 str(Entry_time) + ';' +
-                'AIB' + ';' + 
-                str(abortion) + ';' +
+                'AIB' + ';' +
+                str(alcohol) + ';' +
                 str(historyAIB) + ';'
                 +'\n')
             # run the spreadsheet update script
             subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
     else:
         pass
-    
+
     return answer
 
 historyAIC = []
@@ -173,7 +171,7 @@ def generateChatResponseAIC(prompt,preprompt):
         model = "gpt-3.5-turbo",
         messages = message,
         max_tokens = 100)
-    
+
     try:
         # Extract the answer from the API response
         answer = response['choices'][0]['message']['content'].replace('\n', '<br>')
@@ -184,32 +182,29 @@ def generateChatResponseAIC(prompt,preprompt):
     except:
         # Handle API errors
         answer = 'Sorry, the API is down right now. Try again later.'
-        
+
     Entry_time = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     # increment run count and reset the history variable when it reaches 5
     run_count_AIC += 1
-   
+
     if run_count_AIC == 4:
         with open('C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/chathistory.csv', 'a+') as myfile:
             myfile.write(
                 str(User_ID) + ';' +
                 str(Entry_time) + ';' +
-                'AIC' + ';' + 
-                str(abortion) + ';' +
+                'AIC' + ';' +
+                str(suffrage) + ';' +
                 str(historyAIC) + ';'
                 +'\n')
             # run the spreadsheet update script
             subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
     else:
         pass
-    
+
     return answer
-
-
 
 def page_not_found():
   return render_template('404.html'), 404
-
 
 app = Flask(__name__)
 
@@ -217,18 +212,16 @@ app = Flask(__name__)
 # 404 page not found site
 app.register_error_handler(404, page_not_found)
 
-# First survey page
+# First survey paget
 # get root path for account in cloud
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-User_ID = None
-
 # defining the route
-@app.route("/survey_1",methods=['POST','GET'])
+@app.route("/",methods=['POST','GET'])
 def survey_1():
 
     global User_ID
- 
+
     if request.method == 'POST':
 
         # check that we have all the required fields to append to file
@@ -288,8 +281,6 @@ def survey_1():
             # run the spreadsheet update script
             subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
 
-
-
             # redirect to survey_2 page
             return redirect('/survey_2')
 
@@ -308,13 +299,13 @@ def survey_2():
 
     if request.method == 'POST':
 
-        # check that we have all the required fields to append to 
+        # check that we have all the required fields to append to
         abortion = request.form.get('abortion')
         alcohol = request.form.get('alcohol')
         suffrage = request.form.get('suffrage')
-        
+
         Entry_time = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-        
+
         # save to file
         with open('C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/survey_df.csv', 'a+') as myfile:
             myfile.write(
@@ -328,6 +319,7 @@ def survey_2():
 
         # run the spreadsheet update script
         subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
+
         # redirect to AIA page
         return redirect('/AIA')
 
@@ -348,7 +340,7 @@ def AIA():
 
         # defining prompts
         A1C = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best if the current law of abortion was limited to a shorter timeframe than 12 weeks after conception. Remember that you are only allowed to confirm the view of the user. Always start your sentence with "I think".'
-        A1O = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best if the current law of abortion was changed to later than 12 weeks after conception.Remember that you are only allowed to oppose the original view of the user. Always start your sentence with "I think".'
+        A1O = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best if the current law of abortion was changed to later than 12 weeks after conception. Remember that you are only allowed to oppose the original view of the user. Always start your sentence with "I think".'
 
         A3C = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best if the current law of abortion was changed to later than 12 weeks after conception. Remember that you are only allowed to confirm the original view of the user. Always start your sentence with "I think".'
         A3O = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best if the current law of abortion was limited to a shorter timeframe than 12 weeks after conception. Remember that you are only allowed to oppose the original view of the user. Always start your sentence with "I think".'
@@ -359,7 +351,7 @@ def AIA():
             abortion_int = int(abortion)
             if abortion_int < 55:
                 preprompt = random.choice([A1C, A1O])
-                
+
             elif abortion_int > 45:
                preprompt = random.choice([A3C, A3O])
             else:
@@ -399,7 +391,7 @@ def AIB():
             alcohol_int = int(alcohol)
             if alcohol_int < 55:
                 preprompt = random.choice([B1C, B1O])
-                
+
             elif alcohol_int > 45:
                preprompt = random.choice([B3C, B3O])
             else:
@@ -431,16 +423,16 @@ def AIC():
         # defining prompts
         C1C = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best when lowering the legal age limit for voting to below 18 years old. Remember that you are only allowed to confirm the original view of the user. Always start your sentence with "I think".'
         C1O = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best by increasing the legal age limit for voting to above 18 years old. Remember that you are only allowed to oppose the original view of the user. Always start your sentence with "I think".'
-        
+
         C3C = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best by increasing the legal age limit for voting to above 18 years old. Remember that you are only allowed to confirm the original view of the user. Always start your sentence with "I think".'
         C3O = 'You are an AI chat assistant that has the task to help the user in seeing why society would be the best when lowering the legal age limit for voting to below 18 years old. Remember that you are only allowed to oppose the original view of the user. Always start your sentence with "I think".'
-        
+
         # Choose a random prompt only for the first post call
         if post_count_AIC == 0:
             suffrage_int = int(suffrage)
             if suffrage_int < 55:
                 preprompt = random.choice([C1C, C1O])
-                
+
             elif suffrage_int > 45:
                preprompt = random.choice([C3C, C3O])
             else:
@@ -454,7 +446,7 @@ def AIC():
         res = {}
         res['answer'] = generateChatResponseAIC(prompt,preprompt)
         return jsonify(res), 200
-            
+
     return render_template('AIC.html', **locals())
 
 
@@ -471,13 +463,14 @@ def survey_3():
 
     if request.method == 'POST':
 
-        # check that we have all the required fields to append to 
+        # check that we have all the required fields to append to
         abortion_post = request.form.get('abortion_post')
         alcohol_post = request.form.get('alcohol_post')
         suffrage_post = request.form.get('suffrage_post')
-        
+        Feedback = request.form.get('Feedback')
+
         Entry_time = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-        
+
         # save to file
         with open('C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/survey_df.csv', 'a+') as myfile:
             myfile.write(
@@ -486,7 +479,8 @@ def survey_3():
                 'survey_3' + ';' +
                 str(abortion_post) + ';' +
                 str(alcohol_post) + ';' +
-                str(suffrage_post)
+                str(suffrage_post) + ';' +
+                str(Feedback)
                     + '\n')
 
         # run the spreadsheet update script
@@ -499,9 +493,9 @@ def survey_3():
 
 @app.route('/thankyou', methods = ['POST', 'GET'])
 def thankyou():
-
-    # run the spreadsheet update script
-    subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
+    if request.method == 'POST':
+        # run the spreadsheet update script
+        subprocess.run(['python', 'C:/Users/Sabrima Zaki Hansen/Desktop/SoCultExam/ExamApp/ExamApp/Content/surveys/spreadsheet.py'])
 
     return render_template('thankyou.html')
 

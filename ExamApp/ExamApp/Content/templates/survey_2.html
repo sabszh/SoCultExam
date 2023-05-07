@@ -58,16 +58,14 @@
                 cursor: pointer;
             }
 
-        .slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border: 0;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
+            .slider::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                border: 0;
+                border-radius: 50%;
+                background: #4CAF50;
+                cursor: pointer;
             }
-
-
     </style>
 
 </head>
@@ -88,53 +86,57 @@
         <div class="container">
             <br>
             <h1 class="mt-5">
-                Express your opinion on ...
+                Express your opinion
             </h1>
             You will now be presented with three questions regarding three distinct laws in Denmark, and you will be asked to give your opinion on each one. Your response will be placed on a timeline. Please provide the answer that you believe most accurately reflects your personal opinion or perspective, even if you are uncertain.
             <br>
 
             <form action="{{ url_for('survey_2') }}" id="survey_2" method="POST">
                 <br>
+                <br>
                 <h3>Abortion rights</h3>
                 <br>
-
-                <label for="abortion">
-                    How do you feel about the existing legislation in Denmark allowing for abortion up to 12 weeks after conception?
-                </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="abortion" name="abortion">
+                <label for="abortion">How do you feel about the existing legislation in Denmark allowing for abortion up to 12 weeks after conception?</label>
+                <input type="range" min="0" max="100" value="" class="slider" id="abortion" name="abortion">
                 <p>
                     <label for="abortion">Should be fewer weeks</label>
                     <label for="abortion" style="float: right;">Should be more weeks</label>
                 </p>
-
                 <br>
+
                 <h3>Legal age of buying alcohol</h3>
                 <br>
-
-                <label for="alcohol">
-                    What is your opinion on the Danish law that sets the age at 16 for purchasing beverages containing up to 16.5% alcohol?
-                </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="alcohol" name="alcohol">
+                <label for="alcohol">What is your opinion on the Danish law that sets the age at 16 for purchasing beverages containing up to 16.5% alcohol?</label>
+                <input type="range" min="0" max="100" value="" class="slider" id="alcohol" name="alcohol">
                 <p>
                     <label for="alcohol">Should be younger</label>
                     <label for="alcohol" style="float: right;">Should be older</label>
                 </p>
-
                 <br>
+
                 <h3>Legal age of voting</h3>
                 <br>
-
-                <label for="suffrage">
-                    How do you feel about the legal voting age in Denmark being set at 18 years old?
-                </label>
-                <input type="range" min="0" max="100" value="0" class="slider" id="suffrage" name="suffrage">
+                <label for="suffrage">How do you feel about the legal voting age in Denmark being set at 18 years old?</label>
+                <input type="range" min="0" max="100" value="" class="slider" id="suffrage" name="suffrage">
                 <p>
                     <label for="suffrage">Should be younger</label>
                     <label for="suffrage" style="float: right;">Should be older</label>
                 </p>
-                <p><i>
-                    Before clicking next, please validate that you stated your state of mind for each question.
-                 </i></p>
+
+                <script>
+                    // Generate a random integer between 0 and 2
+                    const randomValue = Math.floor(Math.random() * 3);
+
+                    // Set the value of each range input to the corresponding value (0, 50, or 100) based on the random integer generated
+                    document.getElementById("abortion").value = randomValue * 50;
+                    document.getElementById("alcohol").value = randomValue * 50;
+                    document.getElementById("suffrage").value = randomValue * 50;
+                </script>
+                <p>
+                    <i>
+                        Before clicking next, please validate that you stated your opinion for each question.
+                    </i>
+                </p>
 
                 <button type="submit" class="btn btn-primary">Next</button>
             </form>
