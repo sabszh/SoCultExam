@@ -16,7 +16,7 @@ import openai
 from datetime import datetime
 import time
 
-openai.api_key = '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'
+openai.api_key = 'your_API_key'
 
 User_ID = None
 
